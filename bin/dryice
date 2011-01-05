@@ -38,7 +38,7 @@
  * ***** END LICENSE BLOCK ***** */
 
 var dryice = require("dryice");
-var Step = require("Step");
+var Step = require("step");
 var fs = require("fs");
 
 var args = process.argv.slice(2);
