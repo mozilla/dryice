@@ -64,7 +64,7 @@ function run() {
             }
 
             var options = JSON.parse(data);
-            var build = new dryice.build();
+            var build = new dryice.Builder();
 
             known_options.forEach(function(key) {
                 if (key in options && key in build) {
