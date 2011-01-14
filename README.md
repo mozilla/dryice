@@ -2,34 +2,29 @@
 DryIce
 ======
 
-CommonJS/RequireJS packaging tool for browser scripts, initially targeting the
-Skywriter/Ace project.
+DryIce is a CommonJS/RequireJS packaging tool for browser scripts, initially
+targeting the Skywriter/Ace project.
 
-Licensed under your choice of Mozilla Public License, GNU General Public License
-or GNU Lesser General Public License (MPL/GPL/LGPL tri-license).
+It is basically just a copy function. It takes input from a set of input files,
+which can be specified in various ways, optionally filters them and outputs them
+to something else.
+
+DryIce is licensed under your choice of Mozilla Public License, GNU General
+Public License or GNU Lesser General Public License (MPL/GPL/LGPL tri-license).
 
 
 Why?
 ----
 
 RequireJS has a build tool which is nice and works well, but it requires Rhino
-and therefore Java. The rest of Ace uses Javascript in either the browser or in
-Node.
+and therefore Java. With DryIce, your whole build process can be in JavaScript.
 
-DryIce produces a single file output that can include binary files (base64
-included)
-
-
-What?
------
-
-DryIce is basically a copy function, and that's it. It takes input from a set
-of input files, which can be specified in various ways, optionally filters them
-and outputs them to something else.
+DryIce produces a single file output that can include binary files (by base64
+encoding them)
 
 
-How?
-----
+How does it work?
+-----------------
 
 To copy a single file:
 
@@ -149,34 +144,34 @@ And you can mix and match your inputs:
     });
 
 
-Which (objects can I pass in)?
-------------------------------
+Formal Parameter Description
+----------------------------
 
 The copy function takes a single parameter which is an object with 2 or 3
-members: source, dest and optionally filter.
+members: `source`, `dest` and optionally `filter`.
 
 ### source
 
 There are 6 ways to specify the input source(s)
 
-* A string is expected to point to a filename.
+* A *string* is expected to point to a filename.
   At some stage we may allow them to point at directories too, however this
   can be achieved today using a find object (see below)
 
-* A find object points to a directory with 2 optional RegExps specifying what
+* A *find object* points to a directory with 2 optional RegExps specifying what
   to exclude and include. e.g.
 
     { root: '/' }                       -> The entire filesystem
     { root: 'src', include: /.*\.js$/ } -> All the Javascript files in 'src'
     { root: 'src', exclude: /test/ }    -> All non-test files under 'src'
 
-* A data object - something with a 'value' property.
+* A *data object* - something with a 'value' property.
   The implementation of `copy.createDataObject()` is simply
   `return { value: '' };`. We've batted around some ideas which involve making
   `copy.createDataObject()` smarter than it currently is, so it is advised to
   use this method rather than doing it yourself.
 
-* A based object. A based object is one with `base` and `path` members. They
+* A *based object*. A based object is one with `base` and `path` members. They
   are roughly the same as the string baseObj.base + baseObj.path. Based objects
   are important when using CommonJS filters, because it tells the filter where
   the root of the hierarchy is, which lets us know the module name.
@@ -184,12 +179,12 @@ There are 6 ways to specify the input source(s)
 
     { base: '/etc', path:PATH } where BASE+PATH = filename
 
-* An array containing entries like the 4 above. The array does not have to be
+* An *array* containing entries like the 4 above. The array does not have to be
   homogeneous.
 
-* A function which returns any of the entries above. The current implementation
-  allows for an array to contain functions, however it is advised not to make
-  use of this ability.
+* A *function* which returns any of the entries above.
+  The current implementation allows for an array to contain functions, however
+  it is advised not to make use of this ability.
 
 ### filter
 
@@ -206,16 +201,16 @@ Where the parameters are as follows:
 * value. Either a string or a node Buffer. Most filters will work only with
   strings, so they should begin:
 
-    if (typeof input !== 'string') {
-        input = input.toString();
-    }
+      if (typeof input !== 'string') {
+          input = input.toString();
+      }
 
   Some filters will only work with Buffers (for example the base64 encoding
   filter) so they should begin:
 
-    if (typeof input === 'string') {
-        throw new Error('base64 filter needs to be the first in a filter set');
-    }
+      if (typeof input === 'string') {
+          throw new Error('base64 filter needs to be the first in a filter set');
+      }
 
   At some stage we may allow filters to be marked up as to their requirements.
 
@@ -223,15 +218,15 @@ Where the parameters are as follows:
   string if a based object is not available. It will be common to use one of the
   following idioms to work on a filename:
 
-    if (location.base) {
-        location = location.path;
-    }
+      if (location.base) {
+          location = location.path;
+      }
 
   or
   
-    if (location.base) {
-        location = location.base + location.path;
-    }
+      if (location.base) {
+          location = location.base + location.path;
+      }
 
 There are 2 points in a copy run where filters could be used, either before the
 individual sources are concatenated, or after. Some filters should be used in
@@ -245,6 +240,18 @@ marked with `onRead = true`. For example:
       return '';
     }
     makeBlank.onRead = true;
+
+DryIce currently comes with 4 filters:
+
+* _copy.filter.uglifyjs_: Calls uglify on the input.
+* _copy.filter.addDefines_: Wraps the input to inline files fetched using
+  RequireJSs text import feature.
+* _copy.filter.base64_: Similar to addDefines, but assumes the input is
+  binary and should be base64 encoded.
+* _copy.filter.moduleDefines_: Replaces define lines to include the module name
+  e.g. `define(function(export, require, module) { ... });` is turned into
+  `define('module/name', function(export, require, module) { ... });`
+
 
 ### dest
 
