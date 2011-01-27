@@ -2,7 +2,7 @@
   "name": "dryice",
   "description": "A CommonJS/RequireJS packaging tool for browser scripts",
   "keywords": [ "build", "requirejs" ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/mozilla/dryice",
   "author": "Joe Walker <joe@getahead.org>",
   "contributors": [ ],
@@ -13,7 +13,7 @@
   "bugs": { "web": "http://github.com/isaacs/npm/issues" },
   "directories": { "lib" : "./lib" },
   "main": "./lib/dryice/index.js",
-  "engines": { "node" : ">=0.2" },
+  "engines": { "node" : ">=0.2.0" },
   "licenses": [
     { "type": "MPL", "url" : "https://www.mozilla.org/MPL/MPL-1.1.html" },
     { "type": "GPL", "url" : "http://www.gnu.org/licenses/gpl.html" },
