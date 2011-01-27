@@ -23,6 +23,7 @@
     { "type": "git", "url": "http://github.com/mozilla/dryice.git" }
   ],
   "dependencies": {
-    "uglify-js": ">=0.0.2"
+    "uglify-js": ">=0.0.2",
+    "step": ">=0.0.3"    
   }
 }
