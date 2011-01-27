@@ -143,6 +143,24 @@ And you can mix and match your inputs:
       dest: 'mess.bin'
     });
 
+Common JS project dependency tracking:
+
+    var project = copy.createCommonJsProject([
+        '/path/to/source/tree/lib',
+        '/some/other/project/lib'
+    ]);
+    copy({
+        source: copy.source.commonjs({
+            project: project,
+            require: [ 'main', 'plugin/main' ]
+        }),
+        dest: ''
+    });
+
+This digs around in the project source trees specified in the project for
+modules named in the 'require' statement. When it finds them it looks through
+them for require statements, and finds those, and so on.
+
 
 Formal Parameter Description
 ----------------------------
@@ -179,12 +197,10 @@ There are 6 ways to specify the input source(s)
 
     { base: '/etc', path:PATH } where BASE+PATH = filename
 
-* An *array* containing entries like the 4 above. The array does not have to be
+* An *array* containing input source entries. The array does not have to be
   homogeneous.
 
-* A *function* which returns any of the entries above.
-  The current implementation allows for an array to contain functions, however
-  it is advised not to make use of this ability.
+* A *function* which returns any input source entries.
 
 ### filter
 
@@ -269,13 +285,6 @@ requires'.
 
 There are some tweaks we'd still like to make to enable more filters and
 multiple destinations:
-
-To use CommonJS dependencies to specify sources:
-
-    copy({
-      source: { commonJS: [ 'main.js' ], ... }
-      dest: 'output.js'
-    });
 
 To recursively copy a directory:
 
