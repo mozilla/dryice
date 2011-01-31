@@ -24,6 +24,6 @@
   ],
   "dependencies": {
     "uglify-js": ">=0.0.2",
-    "step": ">=0.0.3"    
+    "step": ">=0.0.3"
   }
 }
