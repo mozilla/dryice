@@ -217,14 +217,14 @@ Where the parameters are as follows:
 * value. Either a string or a node Buffer. Most filters will work only with
   strings, so they should begin:
 
-      if (typeof input !== 'string') {
-          input = input.toString();
+      if (typeof value !== 'string') {
+          value = value.toString();
       }
 
   Some filters will only work with Buffers (for example the base64 encoding
   filter) so they should begin:
 
-      if (typeof input === 'string') {
+      if (typeof value === 'string') {
           throw new Error('base64 filter needs to be the first in a filter set');
       }
 
