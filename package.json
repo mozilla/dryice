@@ -2,7 +2,7 @@
   "name": "dryice",
   "description": "A CommonJS/RequireJS packaging tool for browser scripts",
   "keywords": [ "build", "requirejs" ],
-  "version": "0.2.3",
+  "version": "0.2.4",
   "homepage": "https://github.com/mozilla/dryice",
   "author": "Joe Walker <joe@getahead.org>",
   "contributors": [ ],
@@ -23,7 +23,6 @@
     { "type": "git", "url": "http://github.com/mozilla/dryice.git" }
   ],
   "dependencies": {
-    "uglify-js": ">=0.0.2",
-    "step": ">=0.0.3"
+    "uglify-js": ">=0.0.2"
   }
 }
