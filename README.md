@@ -145,10 +145,12 @@ And you can mix and match your inputs:
 
 Common JS project dependency tracking:
 
-    var project = copy.createCommonJsProject([
-        '/path/to/source/tree/lib',
-        '/some/other/project/lib'
-    ]);
+    var project = copy.createCommonJsProject({
+        roots: [
+            '/path/to/source/tree/lib',
+            '/some/other/project/lib'
+        ]
+    });
     copy({
         source: copy.source.commonjs({
             project: project,
@@ -239,7 +241,7 @@ Where the parameters are as follows:
       }
 
   or
-  
+
       if (location.base) {
           location = location.base + location.path;
       }
@@ -275,6 +277,27 @@ The dest property should be either a filename to which the output should be
 written (existing files will be over-written without warning), or a data object
 to which the data should be appended.
 
+CommonJS Projects
+-----------------
+
+CommonJS projects take a single object with the following properties:
+
+* `roots`: This is required. An array of directories that should be searched for
+  your required modules and dependencies.
+
+* `ignores`: This is optional. An array of modules or dependencies that are
+  required by your project that you would not like to be included in the
+  build. For example, if you were making a build which did not need to support
+  IE, you could do something like the following
+
+        copy.createCommonJsProject({
+            roots: [ '/path/to/project' ],
+            ignores: [ 'dom/ie-compat', 'event/ie-compat' ]
+        });
+
+  then wherever you had `require('dom/ie-compat')` or
+  `require('event/ie-compat')` inside your build, `undefined` would be returned
+  by `require`.
 
 Where (is the project going)?
 -----------------------------
