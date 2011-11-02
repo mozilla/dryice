@@ -1,4 +1,3 @@
-
 DryIce
 ======
 
@@ -21,6 +20,12 @@ and therefore Java. With DryIce, your whole build process can be in JavaScript.
 
 DryIce produces a single file output that can include binary files (by base64
 encoding them)
+
+
+How to install DryIce
+---------------------
+
+    sudo npm install dryice
 
 
 How does it work?
@@ -47,7 +52,7 @@ To cat together all the files in a directory:
       dest: 'built.js'
     });
 
-As above, but only use the Javascript files:
+As above, but only use the JavaScript files:
 
     copy({
       source: { root:'src', include:/.*\.js$/ },
@@ -182,7 +187,7 @@ There are 6 ways to specify the input source(s)
   to exclude and include. e.g.
 
     { root: '/' }                       -> The entire filesystem
-    { root: 'src', include: /.*\.js$/ } -> All the Javascript files in 'src'
+    { root: 'src', include: /.*\.js$/ } -> All the JavaScript files in 'src'
     { root: 'src', exclude: /test/ }    -> All non-test files under 'src'
 
 * A *data object* - something with a 'value' property.
