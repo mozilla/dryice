@@ -1,8 +1,8 @@
 {
   "name": "dryice",
   "description": "A CommonJS/RequireJS packaging tool for browser scripts",
-  "keywords": [ "build", "requirejs" ],
-  "version": "0.3.1",
+  "keywords": [ "build", "commonjs", "requirejs" ],
+  "version": "0.4.0",
   "homepage": "https://github.com/mozilla/dryice",
   "author": "Joe Walker <joe@getahead.org>",
   "contributors": [ ],
