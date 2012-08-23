@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/mozilla/dryice.png)](http://travis-ci.org/mozilla/dryice)
 DryIce
 ======
 
