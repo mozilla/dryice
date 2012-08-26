@@ -3,7 +3,7 @@
   "description": "A CommonJS/RequireJS packaging tool for browser scripts",
   "keywords": [ "build", "commonjs", "requirejs" ],
   "version": "0.4.7",
-  "homepage": "https://github.com/mozilla/dryice",
+  "homepage": "https://github.com/joewalker/dryice",
   "author": "Joe Walker <joe@getahead.org>",
   "contributors": [ ],
   "repository": {

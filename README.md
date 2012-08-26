@@ -1,8 +1,7 @@
 DryIce
 ======
 
-DryIce is a CommonJS/RequireJS packaging tool for browser scripts, initially
-targeting the Skywriter/Ace project.
+DryIce is a CommonJS/RequireJS packaging tool for browser scripts.
 
 It is basically just a copy function. It takes input from a set of input files,
 which can be specified in various ways, optionally filters them and outputs them
