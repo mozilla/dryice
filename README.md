@@ -8,8 +8,7 @@ It is basically just a copy function. It takes input from a set of input files,
 which can be specified in various ways, optionally filters them and outputs them
 to something else.
 
-DryIce is licensed under your choice of Mozilla Public License, GNU General
-Public License or GNU Lesser General Public License (MPL/GPL/LGPL tri-license).
+DryIce is licensed under the Apache License version 2
 
 
 Why?
