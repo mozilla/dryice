@@ -79,7 +79,7 @@ We can filter the files on the way:
 
     copy({
       source: /src/.*\.js$/,
-      filter: copy.filter.uglify,
+      filter: copy.filter.uglifyjs,
       dest: 'built.js'
     });
 
@@ -113,7 +113,7 @@ Results can be stored and then used/reused:
     });
     copy({
       source: sources,
-      filter: copy.filter.uglify,
+      filter: copy.filter.uglifyjs,
       dest: 'sources.js'
     });
 
